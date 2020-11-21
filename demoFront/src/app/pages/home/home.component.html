@@ -4,6 +4,30 @@
     (click)="showForm()"
 >Add Persona</button>
 <hr>
+<div class="container" mt-4 *ngIf="showTable">
+    
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Tipo identificación</th>
+            <th scope="col">No Identificacion</th>
+            <th scope="col">Nombres</th>
+            <th scope="col">Apellidos</th>
+            <th scope="col"> Parentesco</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of personas">
+            <th scope="row">{{p.tipoIde}}</th>
+            <td>{{p.numeroIde}}</td>
+            <td>{{p.primerNombre +" "+ p.segundoNombre}}</td>
+            <td>{{p.primerApellido +" "+p.segundoApellido}}</td>
+            <td>{{p.rol}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
 <div class="container" mt-4 *ngIf="showFormulario">
     <form>
         <div class="form-group">
@@ -19,6 +43,18 @@
           <label for="primerNombre">Primer Nombre</label>
           <input type="text" class="form-control" id="primerNombre" maxlength="30">
         </div>
+        <div class="form-group">
+            <label for="segundoNombre">Segundo Nombre</label>
+            <input type="text" class="form-control" id="segundoNombre" maxlength="30">
+          </div>
+          <div class="form-group">
+            <label for="primerApellido">Primer Apellido</label>
+            <input type="text" class="form-control" id="primerApellido" maxlength="30">
+          </div>
+          <div class="form-group">
+            <label for="segundoApellido">Segundo Apellido</label>
+            <input type="text" class="form-control" id="segundoApellido" maxlength="30">
+          </div>
         <div>
             <input type="text" class="form-control" id="tipoIde" aria-describedby="tipoIdeHelp">
           <small id="tipoIdeHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -31,7 +67,8 @@
               <option>MADRE</option>
             </select>
           </div>
-        
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button (click)="addPersona()" class="btn btn-primary">Submit</button>
       </form>
+
 </div>
+    
